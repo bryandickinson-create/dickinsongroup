@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 80" fill="none">
+  <!-- Option Q: Benzene rings / fused ring system trailing as underline -->
+  <!-- DICKINSON -->
+  <text x="12" y="38" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="38" fill="#800000" letter-spacing="3">DICKINSON</text>
+
+  <!-- GROUP text -->
+  <text x="12" y="66" font-family="Georgia, 'Times New Roman', serif" font-weight="normal" font-size="20" fill="#800000" letter-spacing="7" opacity="0.55">GROUP</text>
+
+  <!-- Fused hexagonal rings trailing as decorative element -->
+  <g transform="translate(130, 48)">
+    <!-- Ring 1 -->
+    <polygon points="10,0 20,6 20,16 10,22 0,16 0,6" stroke="#800000" stroke-width="1.8" fill="none" opacity="0.6"/>
+    <!-- Ring 2 (fused) -->
+    <polygon points="30,0 40,6 40,16 30,22 20,16 20,6" stroke="#800000" stroke-width="1.8" fill="none" opacity="0.5"/>
+    <!-- Ring 3 -->
+    <polygon points="50,0 60,6 60,16 50,22 40,16 40,6" stroke="#800000" stroke-width="1.6" fill="none" opacity="0.4"/>
+    <!-- Ring 4 -->
+    <polygon points="70,0 80,6 80,16 70,22 60,16 60,6" stroke="#800000" stroke-width="1.4" fill="none" opacity="0.3"/>
+    <!-- Ring 5 -->
+    <polygon points="90,0 100,6 100,16 90,22 80,16 80,6" stroke="#800000" stroke-width="1.2" fill="none" opacity="0.2"/>
+    <!-- Ring 6 -->
+    <polygon points="110,0 120,6 120,16 110,22 100,16 100,6" stroke="#800000" stroke-width="1" fill="none" opacity="0.12"/>
+    <!-- Ring 7 -->
+    <polygon points="130,0 140,6 140,16 130,22 120,16 120,6" stroke="#800000" stroke-width="0.8" fill="none" opacity="0.07"/>
+  </g>
+</svg>
