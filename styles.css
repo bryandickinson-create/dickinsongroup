@@ -294,12 +294,6 @@ img {
     max-width: 860px;
 }
 
-.hero-logo {
-    width: clamp(220px, 28vw, 400px);
-    height: auto;
-    margin: 0 auto 28px;
-}
-
 .hero-badge {
     display: inline-block;
     font-size: 0.8rem;
@@ -345,6 +339,11 @@ img {
     color: var(--color-text-secondary);
     max-width: 640px;
     margin: 0 auto 40px;
+}
+
+.hero-group-name {
+    color: var(--color-accent);
+    font-weight: 700;
 }
 
 .hero-actions {
@@ -798,6 +797,93 @@ img {
 .team-info {
     font-size: 0.8rem;
     color: var(--color-text-muted);
+}
+
+/* Alumni collapsible section */
+.alumni-section {
+    margin-top: 48px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 8px;
+}
+
+.alumni-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 16px 0;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--color-text-secondary);
+    transition: color var(--transition);
+}
+
+.alumni-toggle:hover {
+    color: var(--color-accent);
+}
+
+.alumni-toggle-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    transition: transform 0.3s ease;
+    line-height: 1;
+}
+
+.alumni-toggle[aria-expanded="true"] .alumni-toggle-icon {
+    transform: rotate(45deg);
+}
+
+.alumni-content {
+    padding-bottom: 24px;
+}
+
+.alumni-category {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--color-accent);
+    margin: 28px 0 12px;
+    font-weight: 600;
+}
+
+.alumni-category:first-child {
+    margin-top: 8px;
+}
+
+.alumni-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px;
+}
+
+.alumni-list li {
+    padding: 6px 0;
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.08);
+}
+
+.alumni-list li:last-child {
+    border-bottom: none;
+}
+
+.alumni-list li strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.alumni-list li a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.alumni-list li a:hover {
+    text-decoration: underline;
 }
 
 .team-placeholder {
@@ -1417,6 +1503,14 @@ a.pub-link:hover .pub-title {
     pointer-events: none;
     z-index: 1;
 }
+.game-hud-left, .game-hud-right {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.game-hud-right {
+    align-items: flex-end;
+}
 .game-score, .game-fitness {
     font-family: 'Courier New', monospace;
     font-size: 1.1rem;
@@ -1424,6 +1518,18 @@ a.pub-link:hover .pub-title {
     color: #fff;
     letter-spacing: 0.15em;
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.game-stat {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+.game-stat span {
+    font-weight: 700;
+    transition: color 0.3s ease;
 }
 
 /* Game screens (start / game-over) */
@@ -1492,23 +1598,34 @@ a.pub-link:hover .pub-title {
 .game-btn-secondary:hover {
     box-shadow: 0 4px 20px rgba(255,255,255,0.1);
 }
-.game-final-score {
+.game-final-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+.game-final-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 32px;
 }
 .game-final-label {
     font-family: 'Courier New', monospace;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: rgba(255,255,255,0.4);
     letter-spacing: 0.2em;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 .game-final-number {
     font-family: 'Courier New', monospace;
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: #a07d1e;
     text-shadow: 0 0 20px rgba(160, 125, 30, 0.5);
+}
+.game-final-small {
+    font-size: 1.4rem;
+    color: #5a9fa6;
+    text-shadow: 0 0 15px rgba(90, 159, 166, 0.4);
 }

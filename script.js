@@ -209,4 +209,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Alumni section toggle ---
+    const alumniToggle = document.getElementById('alumni-toggle');
+    const alumniContent = document.getElementById('alumni-content');
+    if (alumniToggle && alumniContent) {
+        alumniToggle.addEventListener('click', () => {
+            const expanded = alumniToggle.getAttribute('aria-expanded') === 'true';
+            alumniToggle.setAttribute('aria-expanded', !expanded);
+            if (expanded) {
+                alumniContent.style.display = 'none';
+            } else {
+                alumniContent.style.display = 'block';
+            }
+        });
+    }
+
 });
