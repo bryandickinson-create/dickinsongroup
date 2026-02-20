@@ -508,6 +508,22 @@ img {
     background: var(--color-accent-soft);
     padding: 4px 12px;
     border-radius: 100px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.card-tags li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-tags li:has(a):hover {
+    background: var(--color-accent);
+    color: #fff;
+    cursor: pointer;
+}
+
+.card-tags li:has(a):hover a {
+    color: #fff;
 }
 
 /* Research extra */
@@ -1311,4 +1327,188 @@ a.pub-link:hover .pub-title {
         flex-direction: column;
         gap: 2px;
     }
+}
+
+/* =================================================================
+   EASTER EGG: FITNESS LANDSCAPE RUNNER
+   ================================================================= */
+
+/* DNA hint in footer */
+.dna-hint {
+    font-family: 'Courier New', monospace;
+    font-size: 0.55rem;
+    color: var(--color-text-muted);
+    opacity: 0.3;
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+    cursor: default;
+    user-select: none;
+    transition: opacity 0.3s;
+}
+.dna-hint:hover {
+    opacity: 0.6;
+}
+
+/* ACCESS GRANTED overlay */
+.access-granted-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: accessFadeIn 0.3s ease-out;
+}
+.access-granted-text {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--color-success);
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 20px rgba(13, 143, 101, 0.6), 0 0 60px rgba(13, 143, 101, 0.3);
+    animation: accessPulse 0.5s ease-in-out 3;
+}
+.access-granted-sub {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    color: var(--color-success);
+    opacity: 0;
+    letter-spacing: 0.3em;
+    margin-top: 16px;
+    animation: accessSubFadeIn 0.5s ease-out 0.8s forwards;
+}
+
+@keyframes accessFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes accessPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes accessSubFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 0.7; transform: translateY(0); }
+}
+
+/* Game overlay */
+.game-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #0d0d0d;
+}
+.game-overlay canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Game HUD */
+.game-hud {
+    position: absolute;
+    top: max(20px, env(safe-area-inset-top, 20px));
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 1;
+}
+.game-score, .game-fitness {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Game screens (start / game-over) */
+.game-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background: rgba(13, 13, 13, 0.85);
+    backdrop-filter: blur(4px);
+}
+.game-title {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #5a9fa6;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    text-shadow: 0 0 30px rgba(90, 159, 166, 0.4);
+    text-align: center;
+}
+.game-subtitle, .game-over-msg {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 32px;
+    text-align: center;
+    padding: 0 20px;
+}
+.game-controls-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.game-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 14px 40px;
+    background: #800000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    margin: 6px;
+}
+.game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(128,0,0,0.5);
+}
+.game-btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.game-btn-secondary:hover {
+    box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+}
+.game-final-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+}
+.game-final-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+}
+.game-final-number {
+    font-family: 'Courier New', monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #a07d1e;
+    text-shadow: 0 0 20px rgba(160, 125, 30, 0.5);
 }
