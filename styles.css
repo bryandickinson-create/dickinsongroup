@@ -1364,6 +1364,10 @@ a.pub-link:hover .pub-title {
         min-height: auto;
     }
 
+    .scroll-indicator {
+        display: none;
+    }
+
     .hero-stats {
         gap: 24px;
     }
