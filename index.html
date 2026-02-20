@@ -414,6 +414,14 @@
                     <p class="team-role">Undergraduate Researcher</p>
                     <p class="team-info">UChicago Class of 2027</p>
                 </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="images/team/patrick-gao.jpg" alt="Patrick Gao">
+                    </div>
+                    <h4 class="team-name">Patrick Gao</h4>
+                    <p class="team-role">Undergraduate Researcher</p>
+                    <p class="team-info">UChicago Class of 2027</p>
+                </div>
             </div>
 
             <!-- Alumni (collapsible) -->
@@ -500,9 +508,16 @@
                 </p>
             </div>
 
-            <div class="pub-filter-bar">
-                <button class="pub-filter-btn" data-filter="all">All (126)</button>
-                <button class="pub-filter-btn active" data-filter="2026">2026</button>
+            <!-- Filter mode toggle -->
+            <div class="pub-filter-mode">
+                <button class="pub-mode-btn active" data-mode="year">By Year</button>
+                <button class="pub-mode-btn" data-mode="topic">By Topic</button>
+            </div>
+
+            <!-- Year filter buttons (shown by default) -->
+            <div class="pub-filter-bar" id="year-filters">
+                <button class="pub-filter-btn active" data-filter="all">All (126)</button>
+                <button class="pub-filter-btn" data-filter="2026">2026</button>
                 <button class="pub-filter-btn" data-filter="2025">2025</button>
                 <button class="pub-filter-btn" data-filter="2024">2024</button>
                 <button class="pub-filter-btn" data-filter="2023">2023</button>
@@ -513,9 +528,21 @@
                 <button class="pub-filter-btn" data-filter="older">Older</button>
             </div>
 
+            <!-- Topic filter buttons (hidden by default) -->
+            <div class="pub-filter-bar" id="topic-filters" style="display:none">
+                <button class="pub-filter-btn active" data-topic="all">All</button>
+                <button class="pub-filter-btn" data-topic="proximity-biology">Proximity Biology</button>
+                <button class="pub-filter-btn" data-topic="evolution-applications">Evolution Applications</button>
+                <button class="pub-filter-btn" data-topic="evolution-technology">Evolution Technology</button>
+                <button class="pub-filter-btn" data-topic="synthetic-biology">Synthetic Biology</button>
+                <button class="pub-filter-btn" data-topic="rna">RNA</button>
+                <button class="pub-filter-btn" data-topic="lipidation">Lipidation</button>
+                <button class="pub-filter-btn" data-topic="collab-older">Collaborations / Older Work</button>
+            </div>
+
             <div class="pub-list" id="pub-list">
 <!-- PUBLICATIONS_START -->
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://www.biorxiv.org/content/10.1101/2025.10.22.683516v1.abstract" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -526,7 +553,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-applications">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://www.biorxiv.org/content/10.1101/2025.10.14.682342v2" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -537,7 +564,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://www.biorxiv.org/content/10.1101/2025.11.19.689279v1" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -548,7 +575,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-applications">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://chemrxiv.org/engage/chemrxiv/article-details/69404819bc44e47cf40571c7" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -559,7 +586,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://academic.oup.com/nar/article/54/4/gkag113/8487369" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -570,7 +597,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2026</div>
     <div class="pub-content">
         <h4 class="pub-title">Toward Universal Binder Discovery: Advances in Display, Computational Design and in vivo platforms.</h4>
@@ -579,7 +606,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="proximity-biology">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acscentsci.5c01746" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -590,7 +617,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2026</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.accounts.6c00025" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -601,7 +628,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2025</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/jacs.5c05540" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -612,7 +639,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2025</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41592-025-02740-0" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -623,7 +650,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2025</div>
     <a class="pub-link" href="https://link.springer.com/article/10.1007/s11427-024-2793-x" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -634,7 +661,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2025</div>
     <a class="pub-link" href="https://www.ahajournals.org/doi/10.1161/CIRCRESAHA.124.325918" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -645,7 +672,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2025</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S2451945625000327" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -656,7 +683,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2025</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.chemrev.5c00158?ref=feature" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -667,7 +694,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/jacs.4c07851" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -678,7 +705,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://www.pnas.org/doi/10.1073/pnas.2400883121" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -689,7 +716,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acschembio.4c00265" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -700,7 +727,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://www.cell.com/molecular-therapy-family/nucleic-acids/fulltext/S2162-2531(24)00077-5" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -711,7 +738,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="proximity-biology">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41557-024-01493-1" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -722,7 +749,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41598-024-54655-z" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -733,7 +760,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://onlinelibrary.wiley.com/doi/full/10.1002/ijch.202300169" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -744,7 +771,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41580-024-00700-8" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -755,7 +782,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2024</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41589-024-01634-0" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -766,7 +793,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41467-023-43535-1" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -777,7 +804,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41467-023-42252-z" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -788,7 +815,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.cell.com/cell-reports/fulltext/S2211-1247(23)01147-6" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -799,7 +826,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.jneurosci.org/content/43/43/7084" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -810,7 +837,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41422-023-00836-w" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -821,7 +848,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41467-023-38651-x" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -832,7 +859,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.biochem.2c00709" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -843,7 +870,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.mdpi.com/1424-8247/16/5/709" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -854,7 +881,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://journals.biologists.com/jcs/article/136/7/jcs260629/306243/Activity-dependent-post-translational-regulation" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -865,7 +892,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2023</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S1550413122005496?dgcid=coauthor" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -876,7 +903,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://www.mdpi.com/2076-0417/11/11/1245" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -887,7 +914,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acsmedchemlett.2c00336" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -898,7 +925,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acschembio.2c00193" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -909,7 +936,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acschembio.2c00178" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -920,7 +947,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://www.science.org/doi/full/10.1126/sciadv.abj8633" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -931,7 +958,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://link.springer.com/article/10.1186/s12864-022-08366-2" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -942,7 +969,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0968000422000044?dgcid=author" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -953,7 +980,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://www.science.org/doi/10.1126/sciadv.abi6110" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -964,7 +991,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2022</div>
     <a class="pub-link" href="https://academic.oup.com/hmg/article/31/10/1673/6460184" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -975,7 +1002,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-applications">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acscentsci.1c00811" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -986,7 +1013,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0968089621004016" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -997,7 +1024,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S1367593121000995?via%3Dihub" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1008,7 +1035,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-applications">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://elifesciences.org/articles/67336" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1019,7 +1046,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acschembio.1c00405" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1030,7 +1057,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/full/10.1021/acssynbio.1c00276" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1041,7 +1068,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S1367593121000442?dgcid=author" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1052,7 +1079,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.science.org/doi/10.1126/science.abg5827?rss=1" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1063,7 +1090,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41467-021-21060-3" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1074,7 +1101,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S1046202321000153" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1085,7 +1112,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://link.springer.com/protocol/10.1007/978-1-0716-1262-0_8" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1096,7 +1123,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S1367593121001162?via%3Dihub" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1107,7 +1134,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0959440X21000919?dgcid=author" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1118,7 +1145,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2021</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41589-021-00789-4" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1129,7 +1156,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2020</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acscentsci.0c00537" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1140,7 +1167,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2020</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/chapter/bookseries/pii/S0076687920301750?via%3Dihub" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1151,7 +1178,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2020</div>
     <a class="pub-link" href="https://www.ahajournals.org/doi/full/10.1161/CIRCRESAHA.120.316752" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1162,7 +1189,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-applications">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/full/10.1021/acschembio.9b00669" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1173,7 +1200,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.accounts.9b00354" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1184,7 +1211,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://iopscience.iop.org/article/10.1088/2399-1984/ab4b78" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1195,7 +1222,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41589-019-0399-y" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1206,7 +1233,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41592-019-0550-4" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1217,7 +1244,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/full/10.1021/acscentsci.9b00567" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1228,7 +1255,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://link.springer.com/article/10.1186/s12964-019-0405-8" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1239,7 +1266,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://www.cell.com/cell/fulltext/S0092-8674(19)30620-8" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1250,7 +1277,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://link.springer.com/protocol/10.1007/978-1-4939-9532-5_8" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1261,7 +1288,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://chemistry-europe.onlinelibrary.wiley.com/doi/full/10.1002/cbic.201800707" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1272,7 +1299,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://www.sciencedirect.com/science/chapter/bookseries/pii/S0076687919300540?via%3Dihub" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1283,7 +1310,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2019</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.biochem.9b00676" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1294,7 +1321,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/jacs.8b05012" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1305,7 +1332,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://elifesciences.org/articles/34362" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1316,7 +1343,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41467-017-02655-1" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1327,7 +1354,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/full/10.1021/acs.biochem.7b00835" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1338,7 +1365,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acschembio.7b00532" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1349,7 +1376,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://www.nature.com/articles/s41592-018-0043-x" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1360,7 +1387,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="rna">
     <div class="pub-year">2018</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.biochem.7b01101" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1371,7 +1398,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2017</div>
     <a class="pub-link" href="https://pubs.rsc.org/en/content/articlelanding/2017/sc/c7sc02805a#!divAbstract" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1382,7 +1409,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2017</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/full/10.1021/jacs.7b06152" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1393,7 +1420,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="evolution-technology">
     <div class="pub-year">2017</div>
     <a class="pub-link" href="https://www.nature.com/articles/nchembio.2299" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1404,7 +1431,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="lipidation">
     <div class="pub-year">2017</div>
     <a class="pub-link" href="https://www.nature.com/articles/nchembio.2262" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1415,7 +1442,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2017</div>
     <div class="pub-content">
         <h4 class="pub-title">Protective Effect of Inflammasome Activation by Hydrogen Peroxide in a Mouse Model of Septic Shock.</h4>
@@ -1424,7 +1451,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2016</div>
     <div class="pub-content">
         <h4 class="pub-title">An animal model of Miller Fisher syndrome: Mitochondrial hydrogen peroxide is produced by the autoimmune attack of nerve terminals and activates Schwann cells.</h4>
@@ -1433,7 +1460,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2016</div>
     <div class="pub-content">
         <h4 class="pub-title">MnTE-2-PyP modulates thiol oxidation in a hydrogen peroxide-mediated manner in a human prostate cancer cell.</h4>
@@ -1442,7 +1469,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2016</div>
     <div class="pub-content">
         <h4 class="pub-title">Selenoprotein H suppresses ROS and cooperates with p53 during development and tumorigenesis.</h4>
@@ -1451,7 +1478,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2016</div>
     <div class="pub-content">
         <h4 class="pub-title">Increasing extracellular H2O2 produces a bi-phasic response in intracellular H2O2, with peroxiredoxin hyperoxidation only triggered once the cellular H2O2-buffering capacity is overwhelmed.</h4>
@@ -1460,7 +1487,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2016</div>
     <div class="pub-content">
         <h4 class="pub-title">Cadmium toxicity investigated on physiological and biophysical level under environmentally relevant conditions using the aquatic model plant Ceratophyllum demersum L.</h4>
@@ -1469,7 +1496,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="synthetic-biology">
     <div class="pub-year">2015</div>
     <a class="pub-link" href="https://pubs.acs.org/doi/full/10.1021/jacs.5b10290" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1480,7 +1507,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2015</div>
     <a class="pub-link" href="https://www.nature.com/articles/nchembio.1934" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1491,7 +1518,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2015</div>
     <a class="pub-link" href="https://www.nature.com/articles/nchembio.1820" target="_blank" rel="noopener">
     <div class="pub-content">
@@ -1502,7 +1529,7 @@
     </a>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2015</div>
     <div class="pub-content">
         <h4 class="pub-title">Mitochondrial alarmins released by degenerating motor axon terminals activate perisynaptic Schwann cells.</h4>
@@ -1511,7 +1538,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2015</div>
     <div class="pub-content">
         <h4 class="pub-title">An oxidative fluctuation hypothesis of aging generated by imaging H2O2 levels in live C. elegans with altered lifespans.</h4>
@@ -1520,7 +1547,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2015</div>
     <div class="pub-content">
         <h4 class="pub-title">Imaging Mitochondrial Hydrogen Peroxide in Living Cells.</h4>
@@ -1529,7 +1556,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2014</div>
     <div class="pub-content">
         <h4 class="pub-title">A system for the continuous directed evolution of proteases rapidly reveals drug-resistance mutations.</h4>
@@ -1538,7 +1565,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2014</div>
     <div class="pub-content">
         <h4 class="pub-title">Dephosphorylation of Tyrosine 393 in Argonaute 2 by Protein Tyrosine Phosphatase 1B Regulates Gene Silencing in Oncogenic RAS-Induced Senescence.</h4>
@@ -1547,7 +1574,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2014</div>
     <div class="pub-content">
         <h4 class="pub-title">Mitochondrial DNA damage: A molecular marker of vulnerable nigral neurons in Parkinson's disease.</h4>
@@ -1556,7 +1583,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2014</div>
     <div class="pub-content">
         <h4 class="pub-title">Endogenous hydrogen peroxide (H2O2) production in the epithelium of the developing embryonic lens.</h4>
@@ -1565,7 +1592,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2014</div>
     <div class="pub-content">
         <h4 class="pub-title">Improvement of human keratinocyte migration by a redox active bioelectric dressing.</h4>
@@ -1574,7 +1601,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2014</div>
     <div class="pub-content">
         <h4 class="pub-title">Recent advances in hydrogen peroxide imaging for biological applications.</h4>
@@ -1583,7 +1610,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Experimental interrogation of the path dependence and stochasticity of protein evolution using phage-assisted continuous evolution.</h4>
@@ -1592,7 +1619,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">A population-based experimental model for protein evolution: Effects of mutation rate and selection stringency on evolutionary outcomes.</h4>
@@ -1601,7 +1628,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Preparation and use of MitoPY1 imaging hydrogen peroxide in mitochondria of live cells.</h4>
@@ -1610,7 +1637,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Receptor protein tyrosine phosphatase &alpha; regulates focal adhesion kinase phosphorylation and contributes to ErbB2 oncoprotein-mediated mammary epithelial cell motility.</h4>
@@ -1619,7 +1646,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Effects of Cd &amp; Ni toxicity to Ceratophyllum demersum under environmentally relevant conditions in soft &amp; hard water including a German lake.</h4>
@@ -1628,7 +1655,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Two-photon fluorescence imaging of intracellular hydrogen peroxide with chemoselective fluorescent probes.</h4>
@@ -1637,7 +1664,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Boronate-based fluorescent probes: Imaging hydrogen peroxide in living systems.</h4>
@@ -1646,7 +1673,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Effects of nanomolar copper on water plants - Comparison of biochemical and biophysical mechanisms of deficiency and sublethal toxicity under environmentally relevant conditions.</h4>
@@ -1655,7 +1682,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Mitochondrial hydrogen peroxide and defective cholesterol efflux prevent in vitro fertilization by cryopreserved inbred mouse sperm.</h4>
@@ -1664,7 +1691,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2013</div>
     <div class="pub-content">
         <h4 class="pub-title">Glucose metabolism impacts the spatiotemporal onset and magnitude of HSC induction in vivo.</h4>
@@ -1673,7 +1700,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2012</div>
     <div class="pub-content">
         <h4 class="pub-title">Reactive oxygen species-induced actin glutathionylation controls actin dynamics in neutrophils.</h4>
@@ -1682,7 +1709,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2012</div>
     <div class="pub-content">
         <h4 class="pub-title">H2O2 production downstream of FLT3 is mediated by p22phox in the Endoplasmic Reticulum and is required for STAT5 Signalling.</h4>
@@ -1691,7 +1718,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2012</div>
     <div class="pub-content">
         <h4 class="pub-title">Imaging localised hydrogen peroxide production in living systems.</h4>
@@ -1700,7 +1727,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2012</div>
     <div class="pub-content">
         <h4 class="pub-title">Role of specific T-type calcium channel blocker R(-) Efonidipine in the regulation of renal medullary circulation.</h4>
@@ -1709,7 +1736,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2012</div>
     <div class="pub-content">
         <h4 class="pub-title">Increase of sodium delivery stimulates the mitochondrial respiratory chain H2O2 production in rat medullary thick ascending limb.</h4>
@@ -1718,7 +1745,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2011</div>
     <div class="pub-content">
         <h4 class="pub-title">A nuclear-localized fluorescent hydrogen peroxide probe for monitoring sirtuin-mediated oxidative stress responses in vivo.</h4>
@@ -1727,7 +1754,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2011</div>
     <div class="pub-content">
         <h4 class="pub-title">Chemistry and biology of reactive oxygen species in signaling or stress responses.</h4>
@@ -1736,7 +1763,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2011</div>
     <div class="pub-content">
         <h4 class="pub-title">Nox2 redox signaling maintains essential cell populations in the brain.</h4>
@@ -1745,7 +1772,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2011</div>
     <div class="pub-content">
         <h4 class="pub-title">S100B and APP promote a gliocentric shift and impaired neurogenesis in Down Syndrome neural progenitors.</h4>
@@ -1754,7 +1781,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2010</div>
     <div class="pub-content">
         <h4 class="pub-title">Aquaporin-3 mediates hydrogen peroxide uptake to regulate downstream intracellular signaling.</h4>
@@ -1763,7 +1790,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2010</div>
     <div class="pub-content">
         <h4 class="pub-title">A palette of fluorescent probes with varying emission colors for imaging hydrogen peroxide signaling in living cells.</h4>
@@ -1772,7 +1799,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2010</div>
     <div class="pub-content">
         <h4 class="pub-title">Mitochondrial-targeted fluorescent probes for reactive oxygen species.</h4>
@@ -1781,7 +1808,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2009</div>
     <div class="pub-content">
         <h4 class="pub-title">Avid interactions underlie the Lys63-linked polyubiquitin binding specificities observed for UBA domains.</h4>
@@ -1790,7 +1817,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2008</div>
     <div class="pub-content">
         <h4 class="pub-title">A targetable fluorescent probe for imaging hydrogen peroxide in the mitochondria of living cells.</h4>
@@ -1799,7 +1826,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2008</div>
     <div class="pub-content">
         <h4 class="pub-title">A red-emitting naphthofluorescein-based fluorescent probe for selective detection of hydrogen peroxide in living cells.</h4>
@@ -1808,7 +1835,7 @@
     </div>
 </article>
 
-<article class="pub-item">
+<article class="pub-item" data-topics="collab-older">
     <div class="pub-year">2007</div>
     <div class="pub-content">
         <h4 class="pub-title">Effects of cyclization on conformational dynamics and binding properties of Lys48-linked di-ubiquitin.</h4>

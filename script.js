@@ -162,38 +162,91 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(style);
     }
 
-    // --- Publication year filter ---
-    const filterBtns = document.querySelectorAll('.pub-filter-btn');
+    // --- Publication filter (year + topic modes) ---
     const pubList = document.getElementById('pub-list');
+    const yearFilters = document.getElementById('year-filters');
+    const topicFilters = document.getElementById('topic-filters');
+    const modeBtns = document.querySelectorAll('.pub-mode-btn');
 
-    if (filterBtns.length && pubList) {
-        filterBtns.forEach(btn => {
+    if (pubList && yearFilters) {
+        // Filter by year
+        function filterByYear(filter) {
+            const articles = pubList.querySelectorAll('.pub-item');
+            articles.forEach(article => {
+                const yearEl = article.querySelector('.pub-year');
+                if (!yearEl) return;
+                const year = parseInt(yearEl.textContent);
+
+                if (filter === 'all') {
+                    article.style.display = '';
+                } else if (filter === 'older') {
+                    article.style.display = year <= 2018 ? '' : 'none';
+                } else {
+                    article.style.display = year === parseInt(filter) ? '' : 'none';
+                }
+            });
+        }
+
+        // Filter by topic
+        function filterByTopic(topic) {
+            const articles = pubList.querySelectorAll('.pub-item');
+            articles.forEach(article => {
+                if (topic === 'all') {
+                    article.style.display = '';
+                } else {
+                    const topics = (article.dataset.topics || '').split(',').map(t => t.trim());
+                    article.style.display = topics.includes(topic) ? '' : 'none';
+                }
+            });
+        }
+
+        // Attach click handlers to filter buttons within a container
+        function setupFilterButtons(container, filterFn, useDataAttr) {
+            const btns = container.querySelectorAll('.pub-filter-btn');
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const value = useDataAttr ? btn.dataset.topic : btn.dataset.filter;
+                    filterFn(value);
+                });
+            });
+        }
+
+        // Setup year filter buttons
+        setupFilterButtons(yearFilters, filterByYear, false);
+
+        // Setup topic filter buttons
+        if (topicFilters) {
+            setupFilterButtons(topicFilters, filterByTopic, true);
+        }
+
+        // Mode toggle: switch between year and topic filter bars
+        modeBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                modeBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                const filter = btn.dataset.filter;
-                const articles = pubList.querySelectorAll('.pub-item');
-
-                articles.forEach(article => {
-                    const yearEl = article.querySelector('.pub-year');
-                    if (!yearEl) return;
-                    const year = parseInt(yearEl.textContent);
-
-                    if (filter === 'all') {
-                        article.style.display = '';
-                    } else if (filter === 'older') {
-                        article.style.display = year <= 2018 ? '' : 'none';
-                    } else {
-                        article.style.display = year === parseInt(filter) ? '' : 'none';
-                    }
-                });
+                const mode = btn.dataset.mode;
+                if (mode === 'year') {
+                    yearFilters.style.display = '';
+                    if (topicFilters) topicFilters.style.display = 'none';
+                    // Reset to "All" in year mode
+                    const allBtn = yearFilters.querySelector('[data-filter="all"]');
+                    if (allBtn) allBtn.click();
+                } else if (mode === 'topic') {
+                    yearFilters.style.display = 'none';
+                    if (topicFilters) topicFilters.style.display = '';
+                    // Reset to "All" in topic mode
+                    const allBtn = topicFilters ? topicFilters.querySelector('[data-topic="all"]') : null;
+                    if (allBtn) allBtn.click();
+                }
             });
         });
 
-        // Auto-trigger the active filter on page load (default to most recent year)
-        const activeBtn = document.querySelector('.pub-filter-btn.active');
-        if (activeBtn) activeBtn.click();
+        // Auto-trigger the active filter on page load (default: year mode, 2026)
+        const activeYearBtn = yearFilters.querySelector('.pub-filter-btn.active');
+        if (activeYearBtn) activeYearBtn.click();
     }
 
     // --- Smooth scroll for nav links ---
