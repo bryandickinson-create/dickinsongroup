@@ -2082,6 +2082,7 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Dickinson Group &middot; University of Chicago &middot; Department of Chemistry</p>
                 <p class="dna-hint" title="What is the reverse complement?">5&prime;-ATGCGA-3&prime;</p>
+                <p class="dna-hint rna-hint" title="What enzyme degrades this?">5&prime;-AUGCGA-3&prime;</p>
             </div>
         </div>
     </footer>
@@ -2141,7 +2142,64 @@
         <div class="access-granted-sub">INITIATING DIRECTED EVOLUTION...</div>
     </div>
 
+    <!-- RNA DESTROYER Pac-Man Easter Egg -->
+    <div id="pacman-overlay" class="game-overlay" style="display: none;">
+        <canvas id="pacman-canvas"></canvas>
+        <div id="pacman-hud" class="game-hud">
+            <div class="game-hud-left">
+                <div class="game-score">SCORE <span id="pacman-score-value">0</span></div>
+                <div class="game-stat">LIVES <span id="pacman-lives-value">◉ ◉ ◉</span></div>
+            </div>
+            <div class="game-hud-right">
+                <div class="game-fitness">LEVEL <span id="pacman-level-value">1</span></div>
+            </div>
+        </div>
+        <div id="pacman-start-screen" class="game-screen">
+            <h2 class="game-title pacman-title">RNA DESTROYER</h2>
+            <p class="game-subtitle">You are an <strong>RNase</strong> enzyme loose in the cell. Devour every strand of <strong>RNA</strong> before the <strong>RNase Inhibitors</strong> catch you! Grab an RNA hairpin to temporarily degrade the inhibitors!</p>
+            <div class="game-controls-info">
+                <span>&larr; &uarr; &darr; &rarr; or W A S D to move</span>
+                <span>Eat all RNA to clear each level</span>
+                <span>ESC to exit &nbsp;|&nbsp; Swipe on mobile</span>
+            </div>
+            <div class="pacman-legend">
+                <span class="pacman-legend-item"><span style="color:#c8aa1e;">◉</span> RNase (you)</span>
+                <span class="pacman-legend-item"><span style="color:#e74c3c;">A</span> <span style="color:#3498db;">U</span> <span style="color:#27ae60;">G</span> <span style="color:#f39c12;">C</span> RNA</span>
+                <span class="pacman-legend-item"><span style="color:#ff69b4;">⌘</span> Hairpin</span>
+                <span class="pacman-legend-item"><span style="color:#ff0000;">◗</span> Inhibitors</span>
+            </div>
+            <p id="pacman-highscore" class="game-over-msg" style="margin-bottom: 8px; color: rgba(255,255,255,0.35); font-size: 0.8rem;"></p>
+            <button id="pacman-start-btn" class="game-btn">BEGIN DEGRADATION</button>
+        </div>
+        <div id="pacman-over-screen" class="game-screen" style="display: none;">
+            <h2 class="game-title pacman-title">INHIBITED!</h2>
+            <p class="game-over-msg">The RNase Inhibitors have shut you down.</p>
+            <div class="game-final-stats">
+                <div class="game-final-stat">
+                    <span class="game-final-label">SCORE</span>
+                    <span id="pacman-final-score" class="game-final-number">0</span>
+                </div>
+                <div class="game-final-stat">
+                    <span class="game-final-label">LEVEL</span>
+                    <span id="pacman-final-level" class="game-final-number">0</span>
+                </div>
+                <div class="game-final-stat">
+                    <span class="game-final-label">RNA EATEN</span>
+                    <span id="pacman-final-rna" class="game-final-number game-final-small">0</span>
+                </div>
+            </div>
+            <p id="pacman-over-highscore" style="font-family: 'Courier New', monospace; font-size: 0.8rem; letter-spacing: 0.15em; margin-bottom: 24px;"></p>
+            <button id="pacman-restart-btn" class="game-btn">DEGRADE AGAIN</button>
+            <button id="pacman-exit-btn" class="game-btn game-btn-secondary">EXIT</button>
+        </div>
+    </div>
+    <div id="pacman-access-overlay" class="access-granted-overlay" style="display: none;">
+        <div class="access-granted-text" style="color: #c8aa1e; text-shadow: 0 0 40px rgba(200,170,30,0.6), 0 0 80px rgba(200,170,30,0.3);">ENZYME ACTIVATED</div>
+        <div class="access-granted-sub">INITIATING RNA DEGRADATION...</div>
+    </div>
+
     <script src="game.js"></script>
+    <script src="rnase-pacman.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
