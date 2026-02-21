@@ -287,6 +287,30 @@ img {
     inset: 0;
 }
 
+/* --- Hero Word Cloud Watermark --- */
+.hero-wordcloud {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+}
+
+.wc {
+    position: absolute;
+    color: #800000;
+    opacity: 0.06;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.wc-sm  { font-size: clamp(0.65rem, 1.2vw, 0.85rem); }
+.wc-md  { font-size: clamp(0.85rem, 1.8vw, 1.15rem); }
+.wc-lg  { font-size: clamp(1.1rem, 2.5vw, 1.6rem); }
+.wc-xl  { font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
+
 .hero-content {
     position: relative;
     z-index: 1;
@@ -1366,6 +1390,10 @@ a.pub-link:hover .pub-title {
 }
 
 @media (max-width: 768px) {
+    .hero-wordcloud {
+        opacity: 0.6;
+    }
+
     .section {
         padding: 80px 0;
     }
@@ -1443,6 +1471,10 @@ a.pub-link:hover .pub-title {
 }
 
 @media (max-width: 480px) {
+    .hero-wordcloud {
+        opacity: 0.5;
+    }
+
     .hero-title {
         font-size: 2.2rem;
     }
