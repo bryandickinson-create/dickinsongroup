@@ -1730,7 +1730,11 @@ a.pub-link:hover .pub-title {
     gap: 4px;
 }
 .rna-hint {
-    font-size: 0.7rem;
-    opacity: 0.25;
-    margin-top: 2px;
+    font-size: 0.65rem;
+    opacity: 0.4;
+    margin-top: 4px;
+    cursor: pointer;
+}
+.rna-hint:hover, .rna-hint:active {
+    opacity: 0.7;
 }
