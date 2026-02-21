@@ -1707,3 +1707,30 @@ a.pub-link:hover .pub-title {
     color: #5a9fa6;
     text-shadow: 0 0 15px rgba(90, 159, 166, 0.4);
 }
+
+/* RNA DESTROYER (Pac-Man) */
+.pacman-title {
+    color: #c8aa1e !important;
+    text-shadow: 0 0 30px rgba(200, 170, 30, 0.4) !important;
+}
+.pacman-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+}
+.pacman-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.rna-hint {
+    font-size: 0.7rem;
+    opacity: 0.25;
+    margin-top: 2px;
+}
