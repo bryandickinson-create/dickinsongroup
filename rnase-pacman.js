@@ -139,6 +139,26 @@
         }
     });
 
+    // === MOBILE UNLOCK: tap the RNA hint in the footer ===
+    document.addEventListener('DOMContentLoaded', function () {
+        var hint = document.querySelector('.rna-hint');
+        if (!hint) return;
+        var tapCount = 0;
+        var tapTimer = null;
+        hint.style.cursor = 'pointer';
+        hint.addEventListener('click', function (e) {
+            e.preventDefault();
+            tapCount++;
+            if (tapTimer) clearTimeout(tapTimer);
+            tapTimer = setTimeout(function () { tapCount = 0; }, 800);
+            if (tapCount >= 3 && !unlocked && !active) {
+                tapCount = 0;
+                unlocked = true;
+                playAccess();
+            }
+        });
+    });
+
     // === ACCESS GRANTED ANIMATION ===
     function playAccess() {
         var ov = document.getElementById('pacman-access-overlay');
