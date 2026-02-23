@@ -1100,6 +1100,10 @@ img {
     line-height: 1.55;
     color: var(--color-text-secondary);
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .news-image {
@@ -1226,6 +1230,49 @@ a.pub-link .pub-title {
 
 a.pub-link:hover .pub-title {
     color: var(--color-accent);
+}
+
+/* Publication search bar */
+.pub-search-wrapper {
+    max-width: 480px;
+    margin: 0 auto 24px;
+    position: relative;
+}
+
+.pub-search {
+    width: 100%;
+    padding: 12px 20px 12px 44px;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    background: var(--color-bg-card);
+    color: var(--color-text);
+    outline: none;
+    transition: all var(--transition);
+}
+
+.pub-search:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.08);
+}
+
+.pub-search::placeholder {
+    color: var(--color-text-muted);
+}
+
+.pub-search-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
 }
 
 .pub-filter-mode {
@@ -1544,6 +1591,45 @@ a.pub-link:hover .pub-title {
 .footer-bottom p {
     font-size: 0.8rem;
     color: var(--color-text-muted);
+}
+
+/* === BACK TO TOP BUTTON === */
+.back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(128, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(128, 0, 0, 0.3);
+}
+
+.back-to-top:active {
+    transform: translateY(0);
 }
 
 /* === ANIMATIONS === */

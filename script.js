@@ -183,34 +183,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeBtns = document.querySelectorAll('.pub-mode-btn');
 
     if (pubList && yearFilters) {
-        // Filter by year
+        // Filter by year (respects search)
         function filterByYear(filter) {
             const articles = pubList.querySelectorAll('.pub-item');
             articles.forEach(article => {
                 const yearEl = article.querySelector('.pub-year');
                 if (!yearEl) return;
                 const year = parseInt(yearEl.textContent);
+                const searchHidden = article.dataset.searchHidden === 'true';
 
+                let filterVisible;
                 if (filter === 'all') {
-                    article.style.display = '';
+                    filterVisible = true;
                 } else if (filter === 'older') {
-                    article.style.display = year <= 2018 ? '' : 'none';
+                    filterVisible = year <= 2018;
                 } else {
-                    article.style.display = year === parseInt(filter) ? '' : 'none';
+                    filterVisible = year === parseInt(filter);
                 }
+
+                article.style.display = (filterVisible && !searchHidden) ? '' : 'none';
             });
         }
 
-        // Filter by topic
+        // Filter by topic (respects search)
         function filterByTopic(topic) {
             const articles = pubList.querySelectorAll('.pub-item');
             articles.forEach(article => {
+                const searchHidden = article.dataset.searchHidden === 'true';
+
+                let filterVisible;
                 if (topic === 'all') {
-                    article.style.display = '';
+                    filterVisible = true;
                 } else {
                     const topics = (article.dataset.topics || '').split(',').map(t => t.trim());
-                    article.style.display = topics.includes(topic) ? '' : 'none';
+                    filterVisible = topics.includes(topic);
                 }
+
+                article.style.display = (filterVisible && !searchHidden) ? '' : 'none';
             });
         }
 
@@ -261,6 +270,38 @@ document.addEventListener('DOMContentLoaded', () => {
         // Auto-trigger the active filter on page load (default: year mode, 2026)
         const activeYearBtn = yearFilters.querySelector('.pub-filter-btn.active');
         if (activeYearBtn) activeYearBtn.click();
+
+        // --- Publication search bar ---
+        const pubSearch = document.getElementById('pub-search');
+        if (pubSearch) {
+            pubSearch.addEventListener('input', () => {
+                const query = pubSearch.value.toLowerCase().trim();
+                const articles = pubList.querySelectorAll('.pub-item');
+
+                // Mark search visibility on each item
+                articles.forEach(article => {
+                    if (!query) {
+                        article.dataset.searchHidden = '';
+                    } else {
+                        const title = (article.querySelector('.pub-title')?.textContent || '').toLowerCase();
+                        const authors = (article.querySelector('.pub-authors')?.textContent || '').toLowerCase();
+                        const journal = (article.querySelector('.pub-journal')?.textContent || '').toLowerCase();
+                        const matches = title.includes(query) || authors.includes(query) || journal.includes(query);
+                        article.dataset.searchHidden = matches ? '' : 'true';
+                    }
+                });
+
+                // Re-trigger active filter to combine filter + search state
+                const activeModeBtn = document.querySelector('.pub-mode-btn.active');
+                if (activeModeBtn && activeModeBtn.dataset.mode === 'year') {
+                    const activeBtn = yearFilters.querySelector('.pub-filter-btn.active');
+                    if (activeBtn) filterByYear(activeBtn.dataset.filter);
+                } else {
+                    const activeBtn = topicFilters ? topicFilters.querySelector('.pub-filter-btn.active') : null;
+                    if (activeBtn) filterByTopic(activeBtn.dataset.topic);
+                }
+            });
+        }
     }
 
     // --- Smooth scroll for nav links ---
@@ -475,6 +516,20 @@ document.addEventListener('DOMContentLoaded', () => {
             item.appendChild(badge);
         }
     });
+
+    // --- Back to top button ---
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        const toggleBackToTop = () => {
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        };
+        window.addEventListener('scroll', toggleBackToTop, { passive: true });
+        toggleBackToTop();
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // --- Alumni section toggle ---
     const alumniToggle = document.getElementById('alumni-toggle');
