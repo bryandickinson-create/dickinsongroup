@@ -139,14 +139,13 @@ img {
     right: 0;
     z-index: 1000;
     padding: 20px 0;
-    transition: all var(--transition);
-    backdrop-filter: blur(0px);
+    transition: padding var(--transition), box-shadow var(--transition), border-color var(--transition);
+    background: transparent;
 }
 
 .navbar.scrolled {
     padding: 12px 0;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(20px);
+    background: #fff;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
     border-bottom: 1px solid var(--color-border);
 }
@@ -747,8 +746,13 @@ img {
 
 .team-card:hover {
     border-color: var(--color-border-hover);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(128, 0, 0, 0.1);
+}
+
+.team-card:hover .team-avatar {
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(128, 0, 0, 0.15);
 }
 
 .team-avatar {
@@ -764,6 +768,7 @@ img {
     font-size: 1.2rem;
     color: white;
     overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .team-avatar img {
@@ -1295,6 +1300,30 @@ a.pub-link:hover .pub-title {
 
 .footer-links a:hover {
     color: var(--color-text);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    transition: all var(--transition);
+}
+
+.footer-social-link:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 .footer-bottom {

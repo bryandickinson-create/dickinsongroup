@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Navbar scroll effect ---
     const navbar = document.getElementById('navbar');
     const handleScroll = () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        navbar.classList.toggle('scrolled', window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -108,16 +108,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Add fade-in class to elements
-    const animateElements = document.querySelectorAll(
-        '.research-card, .extra-card, .team-card, .outreach-card, ' +
-        '.pi-content, .contact-info, .contact-map, .alumni-item'
-    );
+    // Add fade-in class to elements — stagger siblings within each group
+    const animateGroups = [
+        { selector: '.section-header', stagger: 0 },
+        { selector: '.research-card', stagger: 0.12 },
+        { selector: '.extra-card', stagger: 0.1 },
+        { selector: '.team-card', stagger: 0.08 },
+        { selector: '.outreach-card', stagger: 0.12 },
+        { selector: '.pi-image-placeholder', stagger: 0 },
+        { selector: '.pi-content', stagger: 0 },
+        { selector: '.contact-info', stagger: 0 },
+        { selector: '.contact-map', stagger: 0 },
+        { selector: '.group-photo-wrapper', stagger: 0 },
+        { selector: '.hero-stats', stagger: 0 },
+        { selector: '.research-cta', stagger: 0 },
+    ];
 
-    animateElements.forEach((el, i) => {
-        el.classList.add('fade-in');
-        el.style.transitionDelay = `${(i % 4) * 0.1}s`;
-        revealObserver.observe(el);
+    animateGroups.forEach(({ selector, stagger }) => {
+        const els = document.querySelectorAll(selector);
+        els.forEach((el, i) => {
+            el.classList.add('fade-in');
+            if (stagger > 0) el.style.transitionDelay = `${(i % 4) * stagger}s`;
+            revealObserver.observe(el);
+        });
     });
 
     // --- Floating particles in hero ---
