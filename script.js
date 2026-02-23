@@ -280,17 +280,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsFeed = document.getElementById('news-feed');
     if (newsFeed) {
         const BSKY_ACTOR = 'chembiobryan.bsky.social';
-        const BSKY_LIMIT = 6;
+        const BSKY_DISPLAY = 6;
 
         async function loadBlueskyFeed() {
             try {
+                // Fetch extra posts since we filter out reposts/quotes from others
                 const res = await fetch(
-                    `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${BSKY_ACTOR}&limit=${BSKY_LIMIT}&filter=posts_no_replies`
+                    `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${BSKY_ACTOR}&limit=20&filter=posts_no_replies`
                 );
                 if (!res.ok) throw new Error('Failed to fetch');
                 const data = await res.json();
 
-                const posts = data.feed || [];
+                // Only keep posts authored by Bryan (filter out reposts & quotes from others)
+                const posts = (data.feed || []).filter(item =>
+                    item.post.author.handle === BSKY_ACTOR && !item.reason
+                ).slice(0, BSKY_DISPLAY);
                 if (posts.length === 0) {
                     newsFeed.innerHTML = '<div class="news-error">No posts found.</div>';
                     return;
@@ -354,6 +358,123 @@ document.addEventListener('DOMContentLoaded', () => {
 
         loadBlueskyFeed();
     }
+
+    // --- Publication journal badges ---
+    const pubItems = document.querySelectorAll('.pub-item');
+    // Color mapping — order matters: first match wins, so put specific patterns first
+    const journalColors = [
+        { patterns: ['Curr. Opin. Chem. Biol.', 'Curr. Opin. Struct.'], css: 'pub-badge-other' },
+        { patterns: ['Nat. Methods', 'Nat. Chem. Biol.', 'Nat. Chem.', 'Nat. Commun.', 'Nat. Rev.', 'Nat. Prot.', 'Nat. Struct.', 'Nature'], css: 'pub-badge-nature' },
+        { patterns: ['Cell Chem. Biol.', 'Cell Metabolism', 'Cell Reports', 'Cell Res.', 'Mol. Cell', 'Cell Biosci.', 'Cell Commun.', 'Chem. Biol.'], css: 'pub-badge-cell' },
+        { patterns: ['Cell,'], css: 'pub-badge-cell' },
+        { patterns: ['Science Advances', 'Science,', 'Science '], css: 'pub-badge-science' },
+        { patterns: ['J. Am. Chem. Soc.', 'JACS', 'ACS Chem. Biol.', 'ACS Cent. Sci.', 'ACS Syn. Biol.', 'ACS Med. Chem.', 'Acc. Chem. Res.'], css: 'pub-badge-acs' },
+        { patterns: ['Proc. Natl. Acad. Sci', 'PNAS'], css: 'pub-badge-pnas' },
+        { patterns: ['Nucleic Acids Res', 'Nucleic Acids Research'], css: 'pub-badge-nar' },
+        { patterns: ['eLife'], css: 'pub-badge-elife' },
+        { patterns: ['Chem. Rev.', 'Chem. Sci.'], css: 'pub-badge-chem' },
+        { patterns: ['BioRxiv', 'bioRxiv', 'ChemRxiv', 'Submitted', 'In prep', 'In revision', 'In Revision'], css: 'pub-badge-preprint' },
+    ];
+
+    // Short display names for journals — longest/most-specific patterns first
+    const journalNames = [
+        { patterns: ['Curr. Opin. Chem. Biol.'], name: 'Curr. Opin. Chem. Biol.' },
+        { patterns: ['Curr. Opin. Struct.'], name: 'Curr. Opin. Struct. Biol.' },
+        { patterns: ['Nat. Rev. Mol. Cell Biol.'], name: 'Nat. Rev.' },
+        { patterns: ['Nat. Struct. Mol. Biol.'], name: 'Nat. Struct.' },
+        { patterns: ['Nat. Chem. Biol.'], name: 'Nat. Chem. Biol.' },
+        { patterns: ['Nat. Methods'], name: 'Nat. Methods' },
+        { patterns: ['Nat. Chem.'], name: 'Nat. Chem.' },
+        { patterns: ['Nat. Commun.'], name: 'Nat. Commun.' },
+        { patterns: ['Nat. Prot.'], name: 'Nat. Prot.' },
+        { patterns: ['Cell Chem. Biol.'], name: 'Cell Chem. Biol.' },
+        { patterns: ['Cell Metabolism'], name: 'Cell Metab.' },
+        { patterns: ['Cell Reports'], name: 'Cell Reports' },
+        { patterns: ['Cell Res.'], name: 'Cell Res.' },
+        { patterns: ['Cell Commun.'], name: 'Cell Commun.' },
+        { patterns: ['Cell Biosci.'], name: 'Cell Biosci.' },
+        { patterns: ['Mol. Cell'], name: 'Mol. Cell' },
+        { patterns: ['Cell,'], name: 'Cell' },
+        { patterns: ['Science Advances'], name: 'Sci. Adv.' },
+        { patterns: ['Science,', 'Science '], name: 'Science' },
+        { patterns: ['J. Am. Chem. Soc.', 'JACS'], name: 'JACS' },
+        { patterns: ['ACS Chem. Biol.'], name: 'ACS Chem. Biol.' },
+        { patterns: ['ACS Cent. Sci.'], name: 'ACS Cent. Sci.' },
+        { patterns: ['ACS Syn. Biol.'], name: 'ACS Syn. Biol.' },
+        { patterns: ['ACS Med. Chem.'], name: 'ACS Med. Chem.' },
+        { patterns: ['Acc. Chem. Res.'], name: 'Acc. Chem. Res.' },
+        { patterns: ['Proc. Natl. Acad. Sci', 'PNAS'], name: 'PNAS' },
+        { patterns: ['Nucleic Acids Res', 'Nucleic Acids Research'], name: 'NAR' },
+        { patterns: ['eLife'], name: 'eLife' },
+        { patterns: ['Chem. Rev.'], name: 'Chem. Rev.' },
+        { patterns: ['Chem. Sci.'], name: 'Chem. Sci.' },
+        { patterns: ['Chem. Biol.'], name: 'Chem. Biol.' },
+        { patterns: ['Immunity'], name: 'Immunity' },
+        { patterns: ['Blood'], name: 'Blood' },
+        { patterns: ['Circ. Res.'], name: 'Circ. Res.' },
+        { patterns: ['J. Neurosci.'], name: 'J. Neurosci.' },
+        { patterns: ['Mol. Ther.'], name: 'Mol. Ther.' },
+        { patterns: ['Biochemistry'], name: 'Biochemistry' },
+        { patterns: ['Trends in Biochemical'], name: 'Trends Biochem.' },
+        { patterns: ['J. Cell Sci.'], name: 'J. Cell Sci.' },
+        { patterns: ['Sci. Rep.'], name: 'Sci. Rep.' },
+        { patterns: ['Sci. China'], name: 'Sci. China' },
+        { patterns: ['Hum. Mol. Genet.'], name: 'Hum. Mol. Genet.' },
+        { patterns: ['J. Biol. Chem.'], name: 'J. Biol. Chem.' },
+        { patterns: ['Pharmaceuticals'], name: 'Pharmaceuticals' },
+        { patterns: ['BMC Genomics'], name: 'BMC Genomics' },
+    ];
+
+    pubItems.forEach(item => {
+        const journalEl = item.querySelector('.pub-journal');
+        if (!journalEl) return;
+        const text = journalEl.textContent;
+
+        // Determine badge color
+        let badgeCss = 'pub-badge-other';
+        for (const { patterns, css } of journalColors) {
+            if (patterns.some(p => text.includes(p))) { badgeCss = css; break; }
+        }
+
+        // Only preprint badge if there's no actual journal
+        if (badgeCss === 'pub-badge-preprint') {
+            // Check if there's also a real journal mentioned
+            const hasRealJournal = journalColors.slice(0, -1).some(({ patterns }) =>
+                patterns.some(p => text.includes(p))
+            );
+            if (hasRealJournal) {
+                // Use the real journal color instead
+                for (const { patterns, css } of journalColors.slice(0, -1)) {
+                    if (patterns.some(p => text.includes(p))) { badgeCss = css; break; }
+                }
+            }
+        }
+
+        // Determine display name
+        let badgeName = '';
+        for (const { patterns, name } of journalNames) {
+            if (patterns.some(p => text.includes(p))) { badgeName = name; break; }
+        }
+        if (!badgeName) {
+            // Extract from <em> tag content
+            const emEl = journalEl.querySelector('em');
+            if (emEl) {
+                let raw = emEl.textContent.trim();
+                // Remove leading status prefixes
+                raw = raw.replace(/^(Submitted\.|In prep\.|In revision,|In Revision,|Accepted,)\s*/i, '').trim();
+                // Take just the journal name (before comma or period)
+                const match = raw.match(/^([^,]+)/);
+                badgeName = match ? match[1].trim().replace(/\.$/, '') : raw;
+            }
+        }
+
+        if (badgeName) {
+            const badge = document.createElement('span');
+            badge.className = `pub-badge ${badgeCss}`;
+            badge.textContent = badgeName;
+            item.appendChild(badge);
+        }
+    });
 
     // --- Alumni section toggle ---
     const alumniToggle = document.getElementById('alumni-toggle');
