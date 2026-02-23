@@ -1228,17 +1228,6 @@ a.pub-link:hover .pub-title {
     color: var(--color-accent);
 }
 
-.pub-badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--color-accent-hover);
-    background: var(--color-accent-soft);
-    padding: 4px 12px;
-    border-radius: 100px;
-    white-space: nowrap;
-    margin-top: 2px;
-}
-
 .pub-filter-mode {
     display: flex;
     justify-content: center;
