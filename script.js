@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { selector: '.group-photo-wrapper', stagger: 0 },
         { selector: '.hero-stats', stagger: 0 },
         { selector: '.research-cta', stagger: 0 },
+        { selector: '.featured-pub-card', stagger: 0.1 },
     ];
 
     animateGroups.forEach(({ selector, stagger }) => {
@@ -274,6 +275,85 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Bluesky news feed ---
+    const newsFeed = document.getElementById('news-feed');
+    if (newsFeed) {
+        const BSKY_ACTOR = 'chembiobryan.bsky.social';
+        const BSKY_LIMIT = 6;
+
+        async function loadBlueskyFeed() {
+            try {
+                const res = await fetch(
+                    `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${BSKY_ACTOR}&limit=${BSKY_LIMIT}&filter=posts_no_replies`
+                );
+                if (!res.ok) throw new Error('Failed to fetch');
+                const data = await res.json();
+
+                const posts = data.feed || [];
+                if (posts.length === 0) {
+                    newsFeed.innerHTML = '<div class="news-error">No posts found.</div>';
+                    return;
+                }
+
+                newsFeed.innerHTML = posts.map(item => {
+                    const post = item.post;
+                    const record = post.record;
+                    const author = post.author;
+                    const text = record.text || '';
+                    const createdAt = new Date(record.createdAt);
+                    const dateStr = createdAt.toLocaleDateString('en-US', {
+                        month: 'short', day: 'numeric', year: 'numeric'
+                    });
+
+                    // Check for embedded images
+                    let imageHtml = '';
+                    if (post.embed && post.embed.images && post.embed.images.length > 0) {
+                        const img = post.embed.images[0];
+                        imageHtml = `<img class="news-image" src="${img.thumb}" alt="${img.alt || ''}" loading="lazy">`;
+                    }
+
+                    const postUri = post.uri.replace('at://', '').replace('app.bsky.feed.post/', '');
+                    const [did, , rkey] = post.uri.replace('at://', '').split('/');
+                    const postUrl = `https://bsky.app/profile/${author.handle}/post/${rkey}`;
+
+                    return `
+                        <a class="news-card" href="${postUrl}" target="_blank" rel="noopener">
+                            <div class="news-card-header">
+                                ${author.avatar ? `<img class="news-avatar" src="${author.avatar}" alt="">` : ''}
+                                <div>
+                                    <div class="news-author">${author.displayName || author.handle}</div>
+                                    <div class="news-handle">@${author.handle}</div>
+                                </div>
+                                <div class="news-date">${dateStr}</div>
+                            </div>
+                            <div class="news-text">${escapeHtml(text)}</div>
+                            ${imageHtml}
+                            <span class="news-view-link">View on Bluesky &rarr;</span>
+                        </a>
+                    `;
+                }).join('');
+
+                // Add news cards to scroll-reveal
+                newsFeed.querySelectorAll('.news-card').forEach((card, i) => {
+                    card.classList.add('fade-in');
+                    card.style.transitionDelay = `${i * 0.1}s`;
+                    revealObserver.observe(card);
+                });
+
+            } catch (err) {
+                newsFeed.innerHTML = '<div class="news-error">Unable to load posts. <a href="https://bsky.app/profile/chembiobryan.bsky.social" target="_blank" rel="noopener">Visit our Bluesky profile &rarr;</a></div>';
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        loadBlueskyFeed();
+    }
 
     // --- Alumni section toggle ---
     const alumniToggle = document.getElementById('alumni-toggle');

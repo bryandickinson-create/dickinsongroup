@@ -939,6 +939,193 @@ img {
     color: var(--color-text-muted);
 }
 
+/* === FEATURED PUBLICATIONS === */
+.featured-pubs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto 48px;
+}
+
+.featured-pub-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.featured-pub-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.featured-pub-journal {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    width: fit-content;
+}
+
+.journal-nature {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+.journal-nar {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+.journal-pnas {
+    background: #fce4ec;
+    color: #880e4f;
+}
+
+.featured-pub-title {
+    font-family: var(--font-serif);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text);
+    transition: color 0.2s;
+}
+
+.featured-pub-card:hover .featured-pub-title {
+    color: var(--color-accent);
+}
+
+.featured-pub-authors {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+.featured-pub-year {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent-hover);
+    margin-top: auto;
+}
+
+/* === NEWS (BLUESKY FEED) === */
+.news-feed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.news-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.news-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.news-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.news-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.news-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.news-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.news-author {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.news-handle {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.news-date {
+    font-size: 0.73rem;
+    color: var(--color-text-muted);
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.news-text {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+    flex: 1;
+}
+
+.news-image {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    max-height: 200px;
+}
+
+.news-view-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.news-card:hover .news-view-link {
+    color: var(--color-accent-hover);
+}
+
+.news-follow {
+    text-align: center;
+    margin-top: 40px;
+}
+
 /* === PUBLICATIONS === */
 .publications {
     background: var(--color-bg);
@@ -1388,6 +1575,14 @@ a.pub-link:hover .pub-title {
         grid-template-columns: 1fr;
     }
 
+    .featured-pubs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .news-feed {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 40px;
@@ -1454,6 +1649,16 @@ a.pub-link:hover .pub-title {
 
     .outreach-grid {
         grid-template-columns: 1fr;
+    }
+
+    .featured-pubs {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .news-feed {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .pub-item {
