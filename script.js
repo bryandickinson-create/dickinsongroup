@@ -531,6 +531,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Copy to clipboard buttons ---
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await navigator.clipboard.writeText(btn.dataset.copy);
+                btn.classList.add('copied');
+                setTimeout(() => btn.classList.remove('copied'), 1500);
+            } catch (err) {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = btn.dataset.copy;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                btn.classList.add('copied');
+                setTimeout(() => btn.classList.remove('copied'), 1500);
+            }
+        });
+    });
+
+    // --- Parallax hero background ---
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        const hero = document.querySelector('.hero');
+        const handleParallax = () => {
+            const scrollY = window.scrollY;
+            const heroHeight = hero ? hero.offsetHeight : 800;
+            if (scrollY < heroHeight) {
+                heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+            }
+        };
+        window.addEventListener('scroll', handleParallax, { passive: true });
+    }
+
     // --- Alumni section toggle ---
     const alumniToggle = document.getElementById('alumni-toggle');
     const alumniContent = document.getElementById('alumni-content');
