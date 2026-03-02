@@ -4,9 +4,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Navbar scroll effect ---
+    // --- Navbar scroll effect with brand bar offset ---
     const navbar = document.getElementById('navbar');
+    const brandBar = document.getElementById('uc-brand-bar');
     const handleScroll = () => {
+        if (brandBar) {
+            const offset = Math.max(0, brandBar.offsetHeight - window.scrollY);
+            navbar.style.top = offset + 'px';
+        }
         navbar.classList.toggle('scrolled', window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
