@@ -194,20 +194,6 @@ img {
     white-space: nowrap;
 }
 
-.uc-search-link {
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    transition: opacity 0.2s;
-    text-decoration: none;
-}
-
-.uc-search-link:hover {
-    opacity: 0.8;
-}
-
 /* --- Navigation --- */
 .navbar {
     position: fixed;
@@ -383,13 +369,13 @@ img {
 }
 
 .hero-badge-logo {
-    height: 48px;
+    height: 80px;
     width: auto;
     max-width: 100%;
 }
 
 .hero-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: clamp(2.8rem, 6vw, 4.8rem);
     font-weight: 700;
     line-height: 1.15;
