@@ -203,14 +203,13 @@ img {
     z-index: 1000;
     padding: 20px 0;
     transition: top 0.15s linear, padding var(--transition), box-shadow var(--transition), border-color var(--transition);
-    background: transparent;
+    background: #ffffff;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .navbar.scrolled {
     padding: 12px 0;
-    background: #fff;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-    border-bottom: 1px solid var(--color-border);
 }
 
 .nav-container {
@@ -331,7 +330,7 @@ img {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 160px 24px 80px;
+    padding: 140px 24px 80px;
 }
 
 .hero-bg {
@@ -359,7 +358,7 @@ img {
 
 .hero-badge {
     display: inline-block;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-decoration: none;
     transition: opacity 0.2s;
 }
