@@ -188,6 +188,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeBtns = document.querySelectorAll('.pub-mode-btn');
 
     if (pubList && yearFilters) {
+        // Auto-update publication counts from the actual number of pub-items
+        const pubCount = pubList.querySelectorAll('.pub-item').length;
+        const pubCountEl = document.getElementById('pub-count');
+        if (pubCountEl) pubCountEl.textContent = pubCount;
+        const pubCountAllEl = document.getElementById('pub-count-all');
+        if (pubCountAllEl) pubCountAllEl.textContent = pubCount;
+
         // Filter by year (respects search)
         function filterByYear(filter) {
             const articles = pubList.querySelectorAll('.pub-item');
