@@ -1608,7 +1608,7 @@
                 'O+....................+O',
                 'R..p................p..R',
                 'O....w.....r......w....O',
-                'O......................O',
+                'O....a............a....O',
                 'R.......*......*.......R',
                 'O....w............w....O',
                 'O..........e...........O',
@@ -1620,7 +1620,7 @@
                 'R....w...|....|........R',
                 'O..e.....Op...O........O',
                 'O.+.a....O..*.O.a....p.O',
-                'O........O....O........O',
+                'O........O..+.O........O',
                 'OOOOOOOOOOO|OOOOOOOOOOOO',
                 'Ot....................tO',
                 'O...e......*.......e...O',
@@ -1637,7 +1637,7 @@
         p: { type: 'PHAGE',    hp: 25,   speed: 1.3, ranged: true,  dmg: [4, 12],  range: 10, cooldown: [1.0, 2.2], score: 100,  drop: 'a', alert: 'alertPhage',    reaction: 0.45 },
         e: { type: 'ECOLI',    hp: 18,   speed: 3.1, ranged: false, dmg: [5, 11],  range: 1.1, cooldown: [0.55, 0.9], score: 200, drop: null, alert: 'alertEcoli',   reaction: 0.25 },
         q: { type: 'PROTEASE', hp: 70,   speed: 1.7, ranged: false, dmg: [10, 22], range: 1.2, cooldown: [0.9, 1.3], score: 400, drop: 'a', alert: 'alertProtease', reaction: 0.35 },
-        r: { type: 'REVIEWER', hp: 1100, speed: 1.5, ranged: true,  dmg: [6, 14],  range: 14, cooldown: [0.35, 0.6], score: 5000, drop: null, alert: 'alertReviewer', reaction: 0.2, boss: true, burst: 3 }
+        r: { type: 'REVIEWER', hp: 650,  speed: 1.4, ranged: true,  dmg: [4, 9],   range: 14, cooldown: [1.1, 1.8], score: 5000, drop: null, alert: 'alertReviewer', reaction: 0.35, boss: true, burst: 3, accuracy: 0.7 }
     };
 
     var ITEM_DEFS = {
@@ -2448,7 +2448,7 @@
         if (e.state === 'idle') wakeEnemy(e);
         e.hp -= dmg;
         if (e.hp <= 0) { killEnemy(e); return; }
-        if (!e.def.boss || Math.random() < 0.12) { e.state = 'pain'; e.stateT = 0.16; }
+        if (!e.def.boss || Math.random() < 0.25) { e.state = 'pain'; e.stateT = 0.16; }
     }
 
     function killEnemy(e) {
@@ -2471,6 +2471,7 @@
         if (!e.hasLos) return;
         var chance = clamp(1.05 - dist / 14, 0.22, 0.9);
         if (player.moving) chance *= 0.72;
+        chance *= e.def.accuracy || 1;
         if (Math.random() < chance) {
             var d = e.def, dmg = irnd(d.dmg[0], d.dmg[1]);
             if (dist > 5) dmg = Math.round(dmg * clamp(1.3 - dist / 12, 0.4, 1));
@@ -2973,6 +2974,13 @@
         p.score = player.levelStartScore || 0;
         p.levelStartScore = p.score;
         p.nextLifeScore = player.nextLifeScore;
+        // Keep collected weapons (and enough tips to use them) after dying
+        p.weapons = player.weapons.slice();
+        p.ammo = Math.max(player.ammo, 25);
+        p.weapon = player.weapon;
+        if (p.weapon === W.NOTEBOOK) {
+            for (var w = 3; w >= 1; w--) if (p.weapons[w]) { p.weapon = w; break; }
+        }
         player = p;
         loadLevel(levelIndex);
         buildShadeRows();
@@ -3145,6 +3153,7 @@
             art: function () { return { weapons: weaponFrames, icons: weaponIcons, tip: tipSprite, multiPickup: sprites[SP.MULTI].canvas }; },
             fire: function (on) { fireHeld = on; },
             key: function (code, on) { keys[code] = on; },
+            hurt: function (n) { hurtPlayer(n); },
             freeze: function (on) { frozen = on; render(); },
             // Advance the simulation without waiting on requestAnimationFrame
             step: function (seconds, dt) {
