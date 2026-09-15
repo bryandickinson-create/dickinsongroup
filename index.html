@@ -2183,59 +2183,70 @@
         </div>
     </footer>
 
-    <!-- Sequence Space Explorer Easter Egg -->
+    <!-- Pipettenstein 3-D Easter Egg -->
     <div id="game-overlay" class="game-overlay" style="display: none;">
         <canvas id="game-canvas"></canvas>
-        <div id="game-hud" class="game-hud">
-            <div class="game-hud-left">
-                <div class="game-score">ROUND <span id="game-score-value">0</span></div>
-                <div class="game-stat game-mutrate">MUT RATE <span id="game-mutrate-value">0%</span></div>
-            </div>
-            <div class="game-hud-right">
-                <div class="game-fitness">FITNESS <span id="game-fitness-value">0</span></div>
-                <div class="game-stat game-selpress">SELECTION <span id="game-selpress-value">0%</span></div>
-            </div>
+        <div id="game-touch" class="game-touch" hidden>
+            <div id="touch-look" class="touch-look"></div>
+            <div id="touch-stick" class="touch-stick"><div id="touch-knob" class="touch-knob"></div></div>
+            <button id="touch-fire" class="touch-btn touch-fire" aria-label="Fire">FIRE</button>
+            <button id="touch-use" class="touch-btn touch-use" aria-label="Use">USE</button>
+            <button id="touch-weapon" class="touch-btn touch-weapon" aria-label="Switch weapon">WPN</button>
+            <button id="touch-pause" class="touch-btn touch-pause" aria-label="Pause">II</button>
         </div>
         <div id="game-start-screen" class="game-screen">
-            <h2 class="game-title">PEAK CLIMBER</h2>
-            <p class="game-subtitle">You are a protein navigating a fitness landscape. During DRIFT, the landscape shifts &mdash; race to the new global maximum! During SELECTION, the water surges &mdash; survive on the highest peak you can find!</p>
+            <p class="game-kicker">THE DICKINSON GROUP PRESENTS</p>
+            <h2 class="game-title game-title-big">PIPETTENSTEIN 3-D</h2>
+            <p class="game-subtitle">A directed evolution experiment has escaped containment. Fight through four floors of evolved phage, mutant <em>E.&nbsp;coli</em> and rogue proteases &mdash; then face the final boss: Reviewer&nbsp;#2.</p>
             <div class="game-controls-info">
-                <span>&larr; &rarr; HOLD to move &nbsp;|&nbsp; &uarr; SPACE to jump</span>
-                <span>Reach peaks for bonus &nbsp;|&nbsp; &#9733; GLOBAL MAX = best survival spot</span>
-                <span>ESC to exit</span>
+                <span>ARROWS move &amp; turn &nbsp;|&nbsp; SPACE fire &nbsp;|&nbsp; SHIFT run</span>
+                <span>E or ENTER use exit switch &amp; secret walls &nbsp;|&nbsp; doors open as you walk in</span>
+                <span>1&ndash;4 switch weapons &nbsp;|&nbsp; TAB map &nbsp;|&nbsp; M mute &nbsp;|&nbsp; ESC pause</span>
+                <span>WASD + MOUSE also work</span>
             </div>
-            <p id="game-highscore" class="game-over-msg" style="margin-bottom: 8px; color: rgba(255,255,255,0.35); font-size: 0.8rem;"></p>
-            <button id="game-start-btn" class="game-btn">BEGIN EVOLUTION</button>
+            <p id="game-highscore" class="game-hint"></p>
+            <div class="game-btn-row">
+                <button id="game-start-btn" class="game-btn">BEGIN EXPERIMENT</button>
+                <button class="game-btn game-btn-secondary" data-game-exit>EXIT</button>
+            </div>
         </div>
-        <div id="game-over-screen" class="game-screen" style="display: none;">
-            <h2 class="game-title">EXTINCTION EVENT</h2>
-            <p id="game-over-message" class="game-over-msg"></p>
-            <div class="game-final-stats">
-                <div class="game-final-stat">
-                    <span class="game-final-label">ROUNDS</span>
-                    <span id="game-final-gen" class="game-final-number">0</span>
-                </div>
-                <div class="game-final-stat">
-                    <span class="game-final-label">FITNESS</span>
-                    <span id="game-final-fitness" class="game-final-number">0</span>
-                </div>
-                <div class="game-final-stat">
-                    <span class="game-final-label">MUT RATE</span>
-                    <span id="game-final-mutrate" class="game-final-number game-final-small">0%</span>
-                </div>
-                <div class="game-final-stat">
-                    <span class="game-final-label">SELECTION</span>
-                    <span id="game-final-selpress" class="game-final-number game-final-small">0%</span>
-                </div>
+        <div id="game-pause-screen" class="game-screen" hidden>
+            <h2 class="game-title">PAUSED</h2>
+            <p class="game-subtitle">Incubating at 37&deg;C.</p>
+            <div class="game-btn-row">
+                <button id="game-resume-btn" class="game-btn">RESUME</button>
+                <button id="game-mute-btn" class="game-btn game-btn-secondary">SOUND: ON</button>
+                <button class="game-btn game-btn-secondary" data-game-exit>EXIT</button>
             </div>
-            <p id="game-over-highscore" style="font-family: 'Courier New', monospace; font-size: 0.8rem; letter-spacing: 0.15em; margin-bottom: 24px;"></p>
-            <button id="game-restart-btn" class="game-btn">EVOLVE AGAIN</button>
-            <button id="game-exit-btn" class="game-btn game-btn-secondary">EXIT</button>
+        </div>
+        <div id="game-level-screen" class="game-screen" hidden>
+            <h2 id="game-level-title" class="game-title">FLOOR COMPLETE</h2>
+            <div class="game-final-stats game-final-stats-wide">
+                <div class="game-final-stat"><span class="game-final-label">KILLS</span><span id="game-stat-kills" class="game-final-number">0%</span></div>
+                <div class="game-final-stat"><span class="game-final-label">SECRETS</span><span id="game-stat-secrets" class="game-final-number">0%</span></div>
+                <div class="game-final-stat"><span class="game-final-label">TREASURE</span><span id="game-stat-treasure" class="game-final-number">0%</span></div>
+                <div class="game-final-stat"><span class="game-final-label">TIME</span><span id="game-stat-time" class="game-final-number game-final-small">0:00</span></div>
+                <div class="game-final-stat"><span class="game-final-label">BONUS</span><span id="game-stat-bonus" class="game-final-number game-final-small">0</span></div>
+            </div>
+            <button id="game-next-btn" class="game-btn">NEXT FLOOR</button>
+        </div>
+        <div id="game-over-screen" class="game-screen" hidden>
+            <h2 id="game-over-title" class="game-title game-title-bad">EXPERIMENT FAILED</h2>
+            <p id="game-over-message" class="game-subtitle"></p>
+            <div class="game-final-stats">
+                <div class="game-final-stat"><span class="game-final-label">SCORE</span><span id="game-final-score" class="game-final-number">0</span></div>
+                <div class="game-final-stat"><span class="game-final-label">FLOOR</span><span id="game-final-floor" class="game-final-number">1</span></div>
+            </div>
+            <p id="game-over-highscore" class="game-hint"></p>
+            <div class="game-btn-row">
+                <button id="game-restart-btn" class="game-btn">TRY AGAIN</button>
+                <button class="game-btn game-btn-secondary" data-game-exit>EXIT</button>
+            </div>
         </div>
     </div>
     <div id="access-granted-overlay" class="access-granted-overlay" style="display: none;">
         <div class="access-granted-text">ACCESS GRANTED</div>
-        <div class="access-granted-sub">INITIATING DIRECTED EVOLUTION...</div>
+        <div class="access-granted-sub">LOADING PIPETTENSTEIN 3-D...</div>
     </div>
 
     <!-- Back to top button -->
